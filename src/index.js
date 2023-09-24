@@ -1,37 +1,6 @@
 import readlineSync from 'readline-sync';
 import { name } from './cli.js'
-
-const generate = () => Math.floor(Math.random() * 101);
-
-const randomize = (task) => {
-    
-    switch (task) {
-        case 'even':
-            let questionEven = generate();
-            return questionEven;
-        case 'calc': {
-            const arrOfSign = ['+', '-', '*'];
-            let questionCalc;
-            const sign = Math.floor(Math.random() * arrOfSign.length);
-            const firstOperator = generate();
-            const secondOperator = generate();
-            switch (arrOfSign[sign]) {
-                case '-':
-                    questionCalc = `${firstOperator} - ${secondOperator}`
-                    return questionCalc;
-                case '+':
-                    questionCalc = `${firstOperator} + ${secondOperator}`
-                    return questionCalc;
-                case '*':
-                    questionCalc = `${firstOperator} * ${secondOperator}`
-                    return questionCalc;
-            }
-        }
-        case 'gcd':
-            let searchGcd = `${String(generate())} ${String(generate())}`;
-            return searchGcd;
-    }
-};
+import randomize from './generate.js';
 
 const generateQuestion = (task) => {
     const question = randomize(task);
