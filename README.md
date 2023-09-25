@@ -1,13 +1,15 @@
-This is my first project ~~and I broke my repository 3 times while debugging and experimenting with git~~. So if you want to look at my work.
+####This is my first project ~~and I broke my repository 3 times while debugging and experimenting with git~~. So if you want to look at my work.
 
 ---
 
 Clone the repository with the command
 (html)
 `git clone https://github.com/SpectrumH/frontend-project-44`
+
 or (ssh)
 `git clone git@github.com:SpectrumH/fronend-project-44.git`
-Install dependencies
+
+Install dependencies by npm
 `npm ci`
 
 Publish the project locally
