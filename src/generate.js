@@ -47,13 +47,13 @@ const randomize = (task) => {
             const secondOperator = generate(operatorInRange);
             switch (arrOfSign[sign]) {
                 case '-':
-                    questionCalc = `${firstOperator} - ${secondOperator}`
+                    questionCalc = `${firstOperator} - ${secondOperator}`;
                     return questionCalc;
                 case '+':
-                    questionCalc = `${firstOperator} + ${secondOperator}`
+                    questionCalc = `${firstOperator} + ${secondOperator}`;
                     return questionCalc;
                 case '*':
-                    questionCalc = `${firstOperator} * ${secondOperator}`
+                    questionCalc = `${firstOperator} * ${secondOperator}`;
                     return questionCalc;
             }
         }
@@ -67,7 +67,11 @@ const randomize = (task) => {
             let censoredRandomIndex = Math.floor(Math.random() * prog.length);
             prog[censoredRandomIndex] = '..';
             return prog.join(' ');
-        }
+            }
+        case 'prime': 
+            const operatorInRange = 30;
+            let prime = generate(operatorInRange);
+            return prime;
     }
 };
 
