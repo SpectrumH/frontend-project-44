@@ -1,4 +1,5 @@
 
+
 const generate = (range) => Math.floor(Math.random() * range) + 1;
 
 const generateInRange = () => {
@@ -8,14 +9,22 @@ const generateInRange = () => {
 };
 
 const generateArrayOptionOfProgression = () => {
-    const operatorInRange = generateInRange();
+    const operatorInRange = 20;
+    const progressionOption = generate(operatorInRange);
+    const amountOfElements = generateInRange();
     let i = 0;
-    const arrOfProgression = [];
-    while (i < generateInRange()) {
-        arrOfProgression.push(generate(operatorInRange))
+    const arrOfProgressions = [];
+    while (i < amountOfElements) {
+        arrOfProgressions.push(generate(progressionOption))
         i += 1;
     }
-    return arrOfProgression;
+    return arrOfProgressions;
+}
+
+const censoredRandomIndex = (coll) => {
+    let censoredRandomIndex = Math.floor(Math.random() * coll.length);
+    coll[censoredRandomIndex] = '..';
+    return coll;
 }
 
 const generateProgression = () => {
@@ -23,56 +32,58 @@ const generateProgression = () => {
     let randomIndexOfProgression = Math.floor(Math.random() * arrOfProgression.length);
     const randomProgression = arrOfProgression[randomIndexOfProgression];
     const prog = [];
+    let progression;
     prog.push(randomProgression);
     for (let i = 0; i < generateInRange(); i += 1) {
         prog.push(prog[i] + randomProgression);
     }
-    return prog;
+    progression = censoredRandomIndex(prog);
+    return progression;
+};
+
+const chooseOperation = () => {
+    let question;
+    const arrOfSign = ['+', '-', '*'];
+    const sign = Math.floor(Math.random() * arrOfSign.length);
+    const operatorInRange = 10;
+    switch (arrOfSign[sign]) {
+        case '-':
+            question = `${generate(operatorInRange)} - ${generate(operatorInRange)}`;
+            break;
+        case '+':
+            question = `${generate(operatorInRange)} + ${generate(operatorInRange)}`;
+            break;
+        case '*':
+            question = `${generate(operatorInRange)} * ${generate(operatorInRange)}`;
+            break;
+    }
+    return question;
 };
 
 const randomize = (task) => {
-    
+    let operatorInRange;
+    let question;
     switch (task) {
-        case 'even': {
-            const operatorInRange = 100;
-            let questionEven = generate(operatorInRange);
-            return questionEven;
-        }
-        case 'calc': {
-            const arrOfSign = ['+', '-', '*'];
-            const operatorInRange = 10;
-            let questionCalc;
-            const sign = Math.floor(Math.random() * arrOfSign.length);
-            const firstOperator = generate(operatorInRange);
-            const secondOperator = generate(operatorInRange);
-            switch (arrOfSign[sign]) {
-                case '-':
-                    questionCalc = `${firstOperator} - ${secondOperator}`;
-                    return questionCalc;
-                case '+':
-                    questionCalc = `${firstOperator} + ${secondOperator}`;
-                    return questionCalc;
-                case '*':
-                    questionCalc = `${firstOperator} * ${secondOperator}`;
-                    return questionCalc;
-            }
-        }
-        case 'gcd': {
-            const operatorInRange = 100;
-            let searchGcd = `${String(generate(operatorInRange))} ${String(generate(operatorInRange))}`;
-            return searchGcd;
-            }
-        case 'progression': {
-            const prog = generateProgression();
-            let censoredRandomIndex = Math.floor(Math.random() * prog.length);
-            prog[censoredRandomIndex] = '..';
-            return prog.join(' ');
-            }
+        case 'even':
+            operatorInRange = 100;
+            question = generate(operatorInRange);
+            break;
+        case 'calc': 
+            question = chooseOperation();
+            break;
+        case 'gcd':
+            operatorInRange = 100;
+            question = `${String(generate(operatorInRange))} ${String(generate(operatorInRange))}`;
+            break;
+        case 'progression': 
+            question = generateProgression().join(' ');
+            break;
         case 'prime': 
-            const operatorInRange = 30;
-            let prime = generate(operatorInRange);
-            return prime;
+            operatorInRange = 30;
+            question = generate(operatorInRange);
+            break;
     }
+    return question;
 };
 
 export default randomize;

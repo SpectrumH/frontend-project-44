@@ -3,7 +3,6 @@ import app from '../index.js'
 const task = 'calc';
 
 const calc = (question) => {
-    
     const arrOfOp = question.split(' ');
     const sign = ['+', '-', '*'];
     let result;
