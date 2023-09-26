@@ -9,7 +9,7 @@ const descriptions = (task) => {
             description = 'What is the result of the expression?';
             break;
         case 'even':
-            description = 'Answer "yes" if the number is even, otherwise anser "no".';
+            description = 'Answer "yes" if the number is even, otherwise answer "no".';
             break;
         case 'gcd':
             description = 'Find the greatest common divisor of given numbers.';
