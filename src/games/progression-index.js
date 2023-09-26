@@ -2,18 +2,28 @@ import app from '../index.js';
 
 const task = 'progression';
 
+const calculateAtEnd = (num1, num2) => {
+  const progressionDifference = num1 - num2;
+  const result = num1 + progressionDifference;
+  return result;
+};
+
+const calculateAtStart = (num1, num2) => {
+  const progressionDifference = num1 - num2;
+  const result = num2 - progressionDifference;
+  return result;
+};
+
 const progression = (prog) => {
-  const coll = prog.split(' ');
-  let progressionDifference;
+  const progressions = prog.split(' ');
+  const halfLengthOfProgression = progressions.length / 2;
   let result;
-  for (let i = 0; i < coll.length; i += 1) {
-    if (coll[i] === '..') {
-      if ((i === coll.length - 1) || (i === coll.length - 2)) {
-        progressionDifference = Number(coll[i - 1]) - Number(coll[i - 2]);
-        result = Number(coll[i - 1]) + progressionDifference;
+  for (let i = 0; i < progressions.length; i += 1) {
+    if (progressions[i] === '..') {
+      if (i < halfLengthOfProgression) {
+        result = calculateAtStart(Number(progressions[i + 2]), Number(progressions[i + 1]));
       } else {
-        progressionDifference = Number(coll[i + 2]) - Number(coll[i + 1]);
-        result = Number(coll[i + 1]) - progressionDifference;
+        result = calculateAtEnd(Number(progressions[i - 1]), Number(progressions[i - 2]));
       }
     }
   }
