@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import run from '../src/games/even-index.js';
 import greeting from '../src/cli.js';
+import { descriptions } from '../src/games/even-index.js'
 
 greeting();
-console.log('Answer "yes" if the number is even, otherwise anser "no".');
+descriptions();
 run();
