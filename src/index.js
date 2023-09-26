@@ -40,7 +40,7 @@ const isCorrect = (result, answer) => {
         return true;
     } else {
         console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'`);
-        console.log(`Let's try again, ${name}`);
+        console.log(`Let's try again, ${name}!`);
         return false;
     }
 };
@@ -58,7 +58,7 @@ const app = (task, func) => {
             break;
         }
     }
-    cycleIsOver ? console.log(`Congratulation, ${name}!`) : cycleIsOver;
+    cycleIsOver ? console.log(`Congratulations, ${name}!`) : cycleIsOver;
 };
 
 export default app;
