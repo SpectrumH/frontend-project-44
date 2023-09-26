@@ -1,9 +1,6 @@
 import app from '../index.js'
 
-const description = 'What number is missing in the progression?';
 const task = 'progression';
-
-export const descriptions = () => console.log(description);
 
 const progression = (prog) => {
     const coll = prog.split(' ');

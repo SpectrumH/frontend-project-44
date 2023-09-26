@@ -1,9 +1,6 @@
 import app from '../index.js'
 
-const description = 'What is the result of the expression?';
 const task = 'calc';
-
-export const descriptions = () => console.log(description);
 
 const calc = (question) => {
     const arrOfOp = question.split(' ');

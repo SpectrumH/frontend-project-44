@@ -2,6 +2,28 @@ import readlineSync from 'readline-sync';
 import { name } from './cli.js'
 import randomize from './generate.js';
 
+const descriptions = (task) => {
+    let description;
+    switch (task) {
+        case 'calc':
+            description = 'What is the result of the expression?';
+            break;
+        case 'even':
+            description = 'Answer "yes" if the number is even, otherwise anser "no".';
+            break;
+        case 'gcd':
+            description = 'Find the greatest common divisor of given numbers.';
+            break;
+        case 'progression':
+            description = 'What number is missing in the progression?';
+            break;
+        case 'prime':
+            description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+            break;
+    }
+    return console.log(description);
+};
+
 const generateQuestion = (task) => {
     const question = randomize(task);
     return question;
@@ -25,6 +47,7 @@ const isCorrect = (result, answer) => {
 
 const app = (task, func) => {
     let cycleIsOver;
+    descriptions(task);
     for (let i = 0; i < 3; i += 1) {
         let question = generateQuestion(task);
         let result = func(question);

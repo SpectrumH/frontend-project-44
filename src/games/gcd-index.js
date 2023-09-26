@@ -1,9 +1,6 @@
 import app from '../index.js'
 
-const description = 'Find the greatest common divisor of given numbers.';
 const task = 'gcd';
-
-export const descriptions = () => console.log(description);
 
 const gcd = (arrOfNum) => {
     const temp = arrOfNum.split(' ');

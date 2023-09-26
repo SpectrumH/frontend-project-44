@@ -1,9 +1,6 @@
 import app from '../index.js'
 
-const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 const task = 'prime';
-
-export const descriptions = () => console.log(description);
 
 const isPrime = (num) => {
     let result = 'no';
