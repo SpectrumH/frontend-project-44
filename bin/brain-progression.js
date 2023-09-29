@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import run from '../src/games/progression-index.js';
-import greeting from '../src/cli.js';
+import run from '../src/games/progression.js';
 
-greeting();
 run();

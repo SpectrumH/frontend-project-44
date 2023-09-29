@@ -1,6 +1,9 @@
+import readlineSync from 'readline-sync';
 import app from '../index.js';
+import randomize from '../generate.js';
 
 const task = 'progression';
+const description = 'What number is missing in the progression?';
 
 const calculateAtEnd = (num1, num2) => {
   const progressionDifference = num1 - num2;
@@ -14,8 +17,11 @@ const calculateAtStart = (num1, num2) => {
   return result;
 };
 
-const progression = (prog) => {
-  const progressions = prog.split(' ');
+const progression = () => {
+  const question = randomize(task);
+  console.log(`Question: ${question}`);
+  const answer = readlineSync.question('You answer: ');
+  const progressions = question.split(' ');
   const halfLengthOfProgression = progressions.length / 2;
   let result;
   for (let i = 0; i < progressions.length; i += 1) {
@@ -27,7 +33,7 @@ const progression = (prog) => {
       }
     }
   }
-  return String(result);
+  return [answer, String(result)];
 };
 
-export default () => app(task, progression);
+export default () => app(description, progression);
