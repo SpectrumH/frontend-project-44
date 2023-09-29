@@ -1,8 +1,14 @@
+import readlineSync from 'readline-sync';
 import app from '../index.js';
+import randomize from '../generate.js';
 
 const task = 'calc';
+const description = 'What is the result of the expression?';
 
-const calc = (question) => {
+const calc = () => {
+  const question = randomize(task);
+  console.log(`Question: ${question}`);
+  const answer = readlineSync.question('You answer: ');
   const arrOfOp = question.split(' ');
   const sign = ['+', '-', '*'];
   let result;
@@ -21,7 +27,7 @@ const calc = (question) => {
       }
     }
   }
-  return String(result);
+  return [answer, String(result)];
 };
 
-export default () => app(task, calc);
+export default () => app(description, calc);
