@@ -1,14 +1,11 @@
-import readlineSync from 'readline-sync';
-import app from '../index.js';
-import randomize from '../generate.js';
+import playGame from '../index.js';
+import generate from '../generate.js';
 
-const task = 'gcd';
 const description = 'Find the greatest common divisor of given numbers.';
 
 const gcd = () => {
-  const question = randomize(task);
-  console.log(`Question: ${question}`);
-  const answer = readlineSync.question('You answer: ');
+  const operatorInRange = 100;
+  const question = `${generate(operatorInRange)} ${generate(operatorInRange)}`;
   const temp = question.split(' ');
   let first = Number(temp[0]);
   for (let i = 1; i < temp.length; i += 1) {
@@ -22,7 +19,7 @@ const gcd = () => {
     }
     first += second;
   }
-  return [answer, String(first)];
+  return [question, String(first)];
 };
 
-export default () => app(description, gcd);
+export default () => playGame(description, gcd);

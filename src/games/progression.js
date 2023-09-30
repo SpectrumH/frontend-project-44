@@ -1,9 +1,13 @@
-import readlineSync from 'readline-sync';
-import app from '../index.js';
-import randomize from '../generate.js';
+import playGame from '../index.js';
+import generate from '../generate.js';
 
-const task = 'progression';
 const description = 'What number is missing in the progression?';
+
+const generateInRange = () => {
+  const min = 6;
+  const max = 12;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 const calculateAtEnd = (num1, num2) => {
   const progressionDifference = num1 - num2;
@@ -17,23 +21,53 @@ const calculateAtStart = (num1, num2) => {
   return result;
 };
 
+const generateArrayOptionOfProgression = () => {
+  const operatorInRange = 20;
+  const progressionOption = generate(operatorInRange);
+  const amountOfElements = generateInRange();
+  let i = 0;
+  const arrOfProgressions = [];
+  while (i < amountOfElements) {
+    arrOfProgressions.push(generate(progressionOption));
+    i += 1;
+  }
+  return arrOfProgressions;
+};
+
+const censoredIndex = (coll) => {
+  const arr = coll;
+  const censoredRandomIndex = Math.floor(Math.random() * coll.length);
+  arr[censoredRandomIndex] = '..';
+  return arr;
+};
+
+const generateProgression = () => {
+  const arrOfProgression = generateArrayOptionOfProgression();
+  const randomIndexOfProgression = Math.floor(Math.random() * arrOfProgression.length);
+  const randomProgression = arrOfProgression[randomIndexOfProgression];
+  const prog = [];
+  prog.push(randomProgression);
+  for (let i = 0; i < generateInRange(); i += 1) {
+    prog.push(prog[i] + randomProgression);
+  }
+  return censoredIndex(prog);
+};
+
 const progression = () => {
-  const question = randomize(task);
-  console.log(`Question: ${question}`);
-  const answer = readlineSync.question('You answer: ');
-  const progressions = question.split(' ');
+  const progressions = generateProgression();
+  const question = progressions.join(' ');
   const halfLengthOfProgression = progressions.length / 2;
   let result;
   for (let i = 0; i < progressions.length; i += 1) {
     if (progressions[i] === '..') {
       if (i < halfLengthOfProgression) {
-        result = calculateAtStart(Number(progressions[i + 2]), Number(progressions[i + 1]));
+        result = calculateAtStart(progressions[i + 2], progressions[i + 1]);
       } else {
-        result = calculateAtEnd(Number(progressions[i - 1]), Number(progressions[i - 2]));
+        result = calculateAtEnd(progressions[i - 1], progressions[i - 2]);
       }
     }
   }
-  return [answer, String(result)];
+  return [question, String(result)];
 };
 
-export default () => app(description, progression);
+export default () => playGame(description, progression);

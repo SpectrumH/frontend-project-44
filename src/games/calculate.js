@@ -1,33 +1,44 @@
-import readlineSync from 'readline-sync';
-import app from '../index.js';
-import randomize from '../generate.js';
+import playGame from '../index.js';
+import generate from '../generate.js';
 
-const task = 'calc';
 const description = 'What is the result of the expression?';
 
+const chooseOperation = () => {
+  let question;
+  const arrOfSign = ['+', '-', '*'];
+  const sign = Math.floor(Math.random() * arrOfSign.length);
+  const operation = arrOfSign[sign];
+  const operatorInRange = 10;
+  switch (operation) {
+    case '-':
+      question = `${generate(operatorInRange)} ${operation} ${generate(operatorInRange)}`;
+      break;
+    case '+':
+      question = `${generate(operatorInRange)} ${operation} ${generate(operatorInRange)}`;
+      break;
+    default:
+      question = `${generate(operatorInRange)} ${operation} ${generate(operatorInRange)}`;
+      break;
+  }
+  return [question, question.split(' ')];
+};
+
 const calc = () => {
-  const question = randomize(task);
-  console.log(`Question: ${question}`);
-  const answer = readlineSync.question('You answer: ');
-  const arrOfOp = question.split(' ');
+  const [question, arrOfOp] = chooseOperation();
   const sign = ['+', '-', '*'];
-  let result;
-  let temp = Number(arrOfOp[0]);
+  let result = Number(arrOfOp[0]);
   for (let i = 1; i < arrOfOp.length; i += 1) {
     if (sign.includes(arrOfOp[i])) {
       if (arrOfOp[i] === '+') {
-        result = temp + Number(arrOfOp[i + 1]);
-        temp = result;
+        result += Number(arrOfOp[i + 1]);
       } else if (arrOfOp[i] === '-') {
-        result = temp - Number(arrOfOp[i + 1]);
-        temp = result;
+        result -= Number(arrOfOp[i + 1]);
       } else {
-        result = temp * Number(arrOfOp[i + 1]);
-        temp = result;
+        result *= Number(arrOfOp[i + 1]);
       }
     }
   }
-  return [answer, String(result)];
+  return [question, String(result)];
 };
 
-export default () => app(description, calc);
+export default () => playGame(description, calc);
