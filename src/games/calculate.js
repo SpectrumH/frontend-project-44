@@ -25,17 +25,14 @@ const chooseOperation = () => {
 
 const calc = () => {
   const [question, arrOfOp] = chooseOperation();
-  const sign = ['+', '-', '*'];
   let result = Number(arrOfOp[0]);
   for (let i = 1; i < arrOfOp.length; i += 1) {
-    if (sign.includes(arrOfOp[i])) {
-      if (arrOfOp[i] === '+') {
-        result += Number(arrOfOp[i + 1]);
-      } else if (arrOfOp[i] === '-') {
-        result -= Number(arrOfOp[i + 1]);
-      } else {
-        result *= Number(arrOfOp[i + 1]);
-      }
+    if (arrOfOp[i] === '+') {
+      result += Number(arrOfOp[i + 1]);
+    } else if (arrOfOp[i] === '-') {
+      result -= Number(arrOfOp[i + 1]);
+    } else if (arrOfOp[i] === '*') {
+      result *= Number(arrOfOp[i + 1]);
     }
   }
   return [question, String(result)];
