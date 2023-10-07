@@ -1,25 +1,31 @@
 import playGame from '../index.js';
-import generate from '../generate.js';
+import generateInteger from '../generate.js';
 
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const isPrime = () => {
-  const operatorInRange = 30;
-  const question = generate(operatorInRange);
-  let result = 'yes';
-  if (question < 2) {
-    result = 'no';
-  }
+const isPrime = (number, devider) => (number % devider === 0);
 
+const calculate = (number) => {
   let devider = 2;
-
-  while (devider <= question / 2) {
-    if (question % devider === 0) {
-      result = 'no';
+  if (number < devider) {
+    return 'no';
+  }
+  while (devider <= number / 2) {
+    if (isPrime(number, devider)) {
+      return 'no';
     }
     devider += 1;
   }
-  return [String(question), result];
+
+  return 'yes';
 };
 
-export default () => playGame(description, isPrime);
+const prime = () => {
+  const min = 1;
+  const max = 30;
+  const question = generateInteger(min, max);
+
+  return [String(question), calculate(question)];
+};
+
+export default () => playGame(description, prime);

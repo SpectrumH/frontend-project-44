@@ -1,21 +1,31 @@
 import playGame from '../index.js';
-import generate from '../generate.js';
+import generateInteger from '../generate.js';
 
 const description = 'Find the greatest common divisor of given numbers.';
 
-const gcd = () => {
-  const operatorInRange = 100;
-  const question = `${generate(operatorInRange)} ${generate(operatorInRange)}`;
-  let [first, second] = question.split(' ');
-  while (first && second) {
-    if (first > second) {
-      first %= second;
+const findGcd = (first, second) => {
+  let firstInt = first;
+  let secondInt = second;
+  while (firstInt && secondInt) {
+    if (firstInt > secondInt) {
+      firstInt %= secondInt;
     } else {
-      second %= first;
+      secondInt %= firstInt;
     }
   }
-  first += second;
-  return [question, String(first)];
+  firstInt += secondInt;
+
+  return firstInt;
+};
+
+const gcd = () => {
+  const min = 1;
+  const max = 100;
+  const first = generateInteger(min, max);
+  const second = generateInteger(min, max);
+  const question = `${first} ${second}`;
+
+  return [question, String(findGcd(first, second))];
 };
 
 export default () => playGame(description, gcd);

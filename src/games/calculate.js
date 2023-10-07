@@ -1,40 +1,37 @@
 import playGame from '../index.js';
-import generate from '../generate.js';
+import generateInteger from '../generate.js';
 
 const description = 'What is the result of the expression?';
 
-const chooseOperation = () => {
-  let question;
+const generateExpression = () => {
+  const min = 1;
+  const max = 10;
   const arrOfSign = ['+', '-', '*'];
-  const sign = Math.floor(Math.random() * arrOfSign.length);
-  const operation = arrOfSign[sign];
-  const operatorInRange = 10;
-  switch (operation) {
-    case '-':
-      question = `${generate(operatorInRange)} ${operation} ${generate(operatorInRange)}`;
-      break;
-    case '+':
-      question = `${generate(operatorInRange)} ${operation} ${generate(operatorInRange)}`;
-      break;
-    default:
-      question = `${generate(operatorInRange)} ${operation} ${generate(operatorInRange)}`;
-      break;
+  const sign = arrOfSign[Math.floor(Math.random() * arrOfSign.length)];
+  const expression = `${generateInteger(min, max)} ${sign} ${generateInteger(min, max)}`;
+
+  return expression;
+};
+
+const resultOfExpression = (expression) => {
+  let result = Number(expression[0]);
+  for (let i = 1; i < expression.length; i += 1) {
+    if (expression[i] === '+') {
+      result += Number(expression[i + 1]);
+    } else if (expression[i] === '-') {
+      result -= Number(expression[i + 1]);
+    } else if (expression[i] === '*') {
+      result *= Number(expression[i + 1]);
+    }
   }
-  return [question, question.split(' ')];
+
+  return result;
 };
 
 const calc = () => {
-  const [question, arrOfOp] = chooseOperation();
-  let result = Number(arrOfOp[0]);
-  for (let i = 1; i < arrOfOp.length; i += 1) {
-    if (arrOfOp[i] === '+') {
-      result += Number(arrOfOp[i + 1]);
-    } else if (arrOfOp[i] === '-') {
-      result -= Number(arrOfOp[i + 1]);
-    } else if (arrOfOp[i] === '*') {
-      result *= Number(arrOfOp[i + 1]);
-    }
-  }
+  const question = generateExpression();
+  const result = resultOfExpression(question.split(' '));
+
   return [question, String(result)];
 };
 

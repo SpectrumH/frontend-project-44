@@ -1,3 +1,3 @@
-const generate = (range) => Math.floor(Math.random() * range) + 1;
+const generateInteger = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-export default generate;
+export default generateInteger;
