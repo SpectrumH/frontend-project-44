@@ -6,9 +6,7 @@ const description = 'Answer "yes" if the number is even, otherwise answer "no".'
 const isEven = (number) => (number % 2 === 0);
 
 const even = () => {
-  const min = 1;
-  const max = 100;
-  const question = generateInteger(min, max);
+  const question = generateInteger(1, 100);
   const result = isEven(question) ? 'yes' : 'no';
 
   return [question, result];

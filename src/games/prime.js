@@ -8,24 +8,22 @@ const isPrime = (number, devider) => (number % devider === 0);
 const calculate = (number) => {
   let devider = 2;
   if (number < devider) {
-    return 'no';
+    return false;
   }
   while (devider <= number / 2) {
     if (isPrime(number, devider)) {
-      return 'no';
+      return false;
     }
     devider += 1;
   }
 
-  return 'yes';
+  return true;
 };
 
 const prime = () => {
-  const min = 1;
-  const max = 30;
-  const question = generateInteger(min, max);
-
-  return [String(question), calculate(question)];
+  const question = generateInteger(1, 30);
+  const result = calculate(question) ? 'yes' : 'no';
+  return [String(question), result];
 };
 
 export default () => playGame(description, prime);

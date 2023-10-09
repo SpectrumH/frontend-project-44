@@ -19,13 +19,12 @@ const findGcd = (first, second) => {
 };
 
 const gcd = () => {
-  const min = 1;
-  const max = 100;
-  const first = generateInteger(min, max);
-  const second = generateInteger(min, max);
+  const first = generateInteger(1, 100);
+  const second = generateInteger(1, 100);
   const question = `${first} ${second}`;
+  const result = findGcd(first, second);
 
-  return [question, String(findGcd(first, second))];
+  return [question, String(result)];
 };
 
 export default () => playGame(description, gcd);
