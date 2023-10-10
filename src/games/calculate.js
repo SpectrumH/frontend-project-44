@@ -2,6 +2,7 @@ import playGame from '../index.js';
 import generateInteger from '../generate.js';
 
 const description = 'What is the result of the expression?';
+const arrOfSign = ['+', '-', '*'];
 
 const resultOfExpression = (first, second, sign) => {
   switch (sign) {
@@ -9,13 +10,14 @@ const resultOfExpression = (first, second, sign) => {
       return first + second;
     case '-':
       return first - second;
-    default:
+    case '*':
       return first * second;
+    default:
+      throw new Error(`operation ${sign} is not supported`);
   }
 };
 
-const calc = () => {
-  const arrOfSign = ['+', '-', '*'];
+const calculate = () => {
   const sign = arrOfSign[generateInteger(0, 2)];
   const firstNum = generateInteger(1, 10);
   const secondNum = generateInteger(1, 10);
@@ -25,4 +27,4 @@ const calc = () => {
   return [question, String(result)];
 };
 
-export default () => playGame(description, calc);
+export default () => playGame(description, calculate);

@@ -5,9 +5,9 @@ const description = 'What number is missing in the progression?';
 
 const generateProgression = (firstElementOfProgression, step, lengthOfProgression) => {
   const progression = [];
-  progression.push(firstElementOfProgression);
   for (let i = 0; i < lengthOfProgression; i += 1) {
-    progression.push(progression[i] + step);
+    const current = firstElementOfProgression + (step * i);
+    progression.push(current);
   }
 
   return progression;

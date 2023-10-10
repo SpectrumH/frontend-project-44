@@ -4,18 +4,11 @@ import generateInteger from '../generate.js';
 const description = 'Find the greatest common divisor of given numbers.';
 
 const findGcd = (first, second) => {
-  let firstInt = first;
-  let secondInt = second;
-  while (firstInt && secondInt) {
-    if (firstInt > secondInt) {
-      firstInt %= secondInt;
-    } else {
-      secondInt %= firstInt;
-    }
+  if (second === 0) {
+    return first;
   }
-  firstInt += secondInt;
 
-  return firstInt;
+  return findGcd(second, first % second);
 };
 
 const gcd = () => {
